@@ -54,4 +54,5 @@ Route::get('/fiction/weeds', function (){
 Route::post('/projects/movies/register', 'MovieController@register');
 Route::post('/projects/movies/login', 'MovieController@login');
 Route::post('/projects/movies/save', 'MovieController@save');
+Route::get('/projects/movies/list', 'MovieController@getList');
 Route::get('/projects/movies', 'MovieController@index');

@@ -136,6 +136,12 @@
 
         }
 
+        .random-users ul li {
+            list-style-type: none;
+            display: inline;
+            margin-left: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -196,6 +202,16 @@
 
     </div>
 </div>
+
+<div class="random-users">
+    <ul>
+        @foreach($randos as $rando)
+            <li data-id="{{$rando->id}}">{{$rando->name}}</li>
+        @endforeach
+    </ul>
+</div>
+
+
 
 <div id="modal" class="modal">
 
@@ -442,11 +458,12 @@
 
                         user = {
                             username: name,
-                            key: key
+                            key: key,
+                            id: data.id
                         };
-                        
 
                         hideLogin();
+                        loadList(user.id);
 
                     } else {
                         alert("That user does not exist");
@@ -458,6 +475,42 @@
                 }
             });
 
+        }
+
+        function loadList(id) {
+
+            currentList = [];
+
+            $.ajax({
+                url: '/projects/movies/list?id=' + id,
+                method: 'GET',
+                success: function (data) {
+                    data = JSON.parse(data);
+
+                    $(".current-list").html("");
+
+                    if (data) {
+
+                        activeID = data[0].id;
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            var movie = data[i];
+                            comments[movie.id] = movie.comment;
+                            titles[movie.id] = movie.title;
+                            currentList.push(movie.id);
+                            $(".current-list").append("<li data-id='" + movie.api_id + "'><a href='#' class='list-movie'>" + movie.title + "</a><div class='del-row'>X</div></li>");
+                        }
+
+                        loadDetails(data[0].api_id);
+
+                    }
+
+
+                }, error: function (a, c, d) {
+                    console.log(a);
+                }
+            });
         }
 
         function hideLogin() {
