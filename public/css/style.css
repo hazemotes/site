@@ -1,0 +1,143 @@
+
+@import 'https://fonts.googleapis.com/css?family=Quicksand';
+
+/* Eric Meyer's CSS reset
+   http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+
+a {
+    color: #333;
+}
+
+a:hover {
+    text-decoration: none;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 5px;
+}
+
+#email {
+    text-align: right;
+    margin-top: 5px;
+}
+
+img {
+    height: 120px;
+    width: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+#topStuff p {
+    text-align: right;
+    font-size: 1.5em;
+}
+
+
+#bar {
+    margin-top: 1px;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(270deg, #000000, #00f2f9, #000000, #fff, #15f600, #000000, #ff8d00, #fff, #ff5454, #000000, #f284f9, #000000, #0061fc, #fff, #9a5aff, #000000);
+    background-size: 1600% 1600%;
+    -webkit-animation: barColorChange 60s linear infinite;
+    -moz-animation: barColorChange 60s linear infinite;
+    -o-animation: barColorChange 60s linear infinite;
+    animation: barColorChange 60s linear infinite
+}
+
+@-webkit-keyframes barColorChange {
+    0% {
+        background-position: 0
+    }
+    50% {
+        background-position: 100%
+    }
+    100% {
+        background-position: 0
+    }
+}
+
+@-moz-keyframes barColorChange {
+    0% {
+        background-position: 0
+    }
+    50% {
+        background-position: 100%
+    }
+    100% {
+        background-position: 0
+    }
+}
+
+@-o-keyframes barColorChange {
+    0% {
+        background-position: 0
+    }
+    50% {
+        background-position: 100%
+    }
+    100% {
+        background-position: 0
+    }
+}
+
+@keyframes barColorChange {
+    0% {
+        background-position: 0
+    }
+    50% {
+        background-position: 100%
+    }
+    100% {
+        background-position: 0
+    }
+}

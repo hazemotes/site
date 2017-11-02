@@ -1,0 +1,73 @@
+@import url(http://fonts.googleapis.com/css?family=EB+Garamond);
+
+body {
+    color: #333;
+    font-size: .9em;
+    background: url(/images/fiction-bg4.png) no-repeat;
+    background-size: 100%;
+}
+
+a {
+    color: #333;
+}
+
+.weeds:hover {
+    color: #0061fc;
+    text-decoration: none
+}
+
+.monsters:hover {
+    color: #ff8d00;
+    text-decoration: none;
+}
+
+.water:hover {
+    color: #00f2f9;
+    text-decoration: none
+}
+
+.lucky:hover {
+    color: #15f600;
+    text-decoration: none;
+}
+
+.christmas:hover {
+    color: #ff5454;
+    text-decoration: none;
+}
+
+.curious:hover {
+    color: #f284f9;
+    text-decoration: none;
+}
+
+.magic:hover {
+    color: #9a5aff;
+    text-decoration: none;
+}
+
+#links:hover {
+    text-decoration: none;
+}
+
+ul {
+    line-height: 3;
+    list-style: none;
+    font-size: 1.5em;
+}
+
+#rightStuff {
+    text-align: right;
+    /*float: right;*/
+    padding: 2px;
+    margin: 0px;
+    right: 0;
+    float: top;
+    font-family: 'Verdana', sans-serif;
+}
+
+#storyList {
+    float: left;
+    /*font-family: Garamond, EB Garamond, Georgia, serif;*/
+    /*margin: 40px;*/
+}

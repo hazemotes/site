@@ -1,0 +1,47 @@
+body {
+    color: #333;
+    font-size: 100%;
+    /*background-color: #f0efef;*/
+    font-family: Georgia, serif;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 250%;
+    font-weight: normal;
+    margin-bottom: 35px;
+}
+
+span {
+    font-size: 500%;
+    float: left;
+    padding: 2px;
+    line-height: 0;
+    margin-bottom: 16px;
+}
+
+.story {
+    margin: auto;
+    width: 50%;
+}
+
+.signature {
+    text-align: right;
+}
+
+a {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #333;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.home-link {
+    margin-bottom: 20px;
+}
