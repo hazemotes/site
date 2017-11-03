@@ -22,7 +22,7 @@ class MovieController extends Controller
 
     public function index()
     {
-        $users = MovieUser::all();
+        $users = MovieUser::inRandomOrder()->get();
 
         foreach ($users as $key => $user){
             $movies = Movie::where('movie_user_id', $user->id)->get()->count();
