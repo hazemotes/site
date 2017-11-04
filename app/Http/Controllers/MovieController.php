@@ -22,7 +22,19 @@ class MovieController extends Controller
 
     public function index()
     {
-        return view('projects.movies');
+        $users = MovieUser::inRandomOrder()->get();
+
+        foreach ($users as $key => $user){
+            $movies = Movie::where('movie_user_id', $user->id)->get()->count();
+
+            if($movies < 1){
+                $users->forget($key);
+            }
+        }
+
+        $data['randos'] = $users;
+
+        return view('projects.movies', $data);
     }
 
     public function register(Request $request)
@@ -58,7 +70,7 @@ class MovieController extends Controller
 
 
         if($user){
-            return response()->json(['status' => 'success', 'key' => $key]);
+            return response()->json(['status' => 'success', 'id' => $user->id]);
         } else {
             return 'error';
         }
@@ -89,6 +101,16 @@ class MovieController extends Controller
         }
 
         return 'success';
+    }
+
+    public function getList(Request $request){
+
+        $id = $request->id;
+
+        $movies = Movie::where('movie_user_id', $id)->get();
+
+        return $movies->toJson();
+
     }
 
     function generateBarcodeNumber()

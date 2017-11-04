@@ -136,6 +136,18 @@
 
         }
 
+        .random-users ul li {
+            list-style-type: none;
+            display: inline;
+            margin-left: 20px;
+            text-decoration: underline;
+        }
+
+        .random-users ul li:hover {
+            text-decoration: none;
+            cursor: default;
+        }
+
     </style>
 </head>
 <body>
@@ -148,7 +160,7 @@
     <span id="login-form">
     <input placeholder="Name" class="login-input" style="width: 75px" id="name-input">
     <input placeholder="Key" class="login-input" style="width: 50px" id="key-input">
-    <a href="#" style="color: #394584;" id="login-button">Log in</a>
+    <a href="#/" style="color: #394584;" id="login-button">Log in</a>
     </span>
 </p>
 
@@ -168,7 +180,7 @@
 
         <ol class="current-list">
         </ol>
-        <p style="font-weight: bold;"><a href="#" id="save">Save</a></p>
+        <p style="font-weight: bold;"><a href="#/" id="save">Save</a></p>
 
     </div>
     <div class="info node">
@@ -189,13 +201,23 @@
             <div class="movie-detail" id="overview"></div>
             <br>
             <label for="comments">Comments: </label>
-            <div class="movie-detail"><input id="comments" placeholder="Log in to save your comments" disabled></div>
+            <div class="movie-detail"><input id="comments" placeholder="Log in to save your comments"></div>
             <br>
 
         </div>
 
     </div>
 </div>
+<div style="text-align: right;"><a href="https://www.themoviedb.org/?language=en">Movie API</a></div>
+<div class="random-users">
+    <p>View others' lists:</p>
+    <ul>
+        @foreach($randos as $rando)
+            <li data-id="{{$rando->id}}" class="rando">{{$rando->name}}</li>
+        @endforeach
+    </ul>
+</div>
+
 
 <div id="modal" class="modal">
 
@@ -237,6 +259,14 @@
             if (e.which === 13 && $("#search").is(":focus")) {
                 clearResults();
                 search();
+            }
+
+            if (e.which === 13 && $(".login-input").is(":focus")) {
+                $("#login-button").trigger("click");
+            }
+
+            if (e.which === 13 && $("#register-name").is(":focus")) {
+                $("#register-button").trigger("click");
             }
         });
 
@@ -316,6 +346,12 @@
             comments[activeID] = $(this).val();
         });
 
+        $(document).on("click", ".rando", function () {
+
+            var id = $(this).data("id");
+            loadList(id);
+        });
+
         function clearResults() {
             $("#no-results").html("");
             $("#search-results").html("");
@@ -325,6 +361,7 @@
 
             activeID = id;
 
+            console.log(comments);
             $("#comments").prop("disabled", false);
             $("#comments").val(comments[id]);
 
@@ -442,11 +479,12 @@
 
                         user = {
                             username: name,
-                            key: key
+                            key: key,
+                            id: data.id
                         };
-                        
 
                         hideLogin();
+                        loadList(user.id);
 
                     } else {
                         alert("That user does not exist");
@@ -458,6 +496,42 @@
                 }
             });
 
+        }
+
+        function loadList(id) {
+
+            currentList = [];
+
+            $.ajax({
+                url: '/projects/movies/list?id=' + id,
+                method: 'GET',
+                success: function (data) {
+                    data = JSON.parse(data);
+
+                    $(".current-list").html("");
+
+                    if (data) {
+
+                        activeID = data[0].id;
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            var movie = data[i];
+                            comments[movie.api_id] = movie.comment;
+                            titles[movie.id] = movie.title;
+                            currentList.push(movie.id);
+                            $(".current-list").append("<li data-id='" + movie.api_id + "'><a href='#' class='list-movie'>" + movie.title + "</a><div class='del-row'>X</div></li>");
+                        }
+
+                        loadDetails(data[0].api_id);
+
+                    }
+
+
+                }, error: function (a, c, d) {
+                    console.log(a);
+                }
+            });
         }
 
         function hideLogin() {
@@ -475,9 +549,3 @@
 
 </script>
 </body>
-
-{{--Issues:
-1. Change enter to search to a button
-
-
---}}
