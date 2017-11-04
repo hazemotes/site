@@ -17,7 +17,7 @@
 </ul>
 <h1>Javascript</h1>
 <ul>
-    <li><a href="/projects/snake">Snake Game (Phaser.js)</a></li>Almost done
+    <li><a href="/projects/snake">Snake Game (Phaser.js)</a></li>
     <li><a href="/projects/simon">Simon</a></li>
     <li><a href="/projects/heatmap">Campus Building Populations Heat Map</a></li>
 </ul>
