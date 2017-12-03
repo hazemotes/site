@@ -185,6 +185,9 @@
         var sound = true;
         var guesses = [];
 
+        var context = new (window.AudioContext || window.webkitAudioContext)();
+        var osc = context.createOscillator(); // instantiate an oscillator
+
         $("#colors").hide();
         $("#face").hide();
 
@@ -202,8 +205,7 @@
 
         function playSound(freq) {
             if (sound) {
-                var context = new (window.AudioContext || window.webkitAudioContext)();
-                var osc = context.createOscillator(); // instantiate an oscillator
+
                 osc.type = 'square'; // sawtooth
                 osc.frequency.value = freq;
                 osc.connect(context.destination); // connect it to the destination
@@ -249,8 +251,6 @@
 
             if (sound) {
                 setTimeout(function () {
-                    var context = new (window.AudioContext || window.webkitAudioContext)();
-                    var osc = context.createOscillator(); // instantiate an oscillator
                     osc.type = 'sawtooth'; // sawtooth
                     osc.frequency.value = 100;
                     osc.connect(context.destination); // connect it to the destination
