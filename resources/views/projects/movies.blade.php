@@ -201,7 +201,7 @@
             <div class="movie-detail" id="overview"></div>
             <br>
             <label for="comments">Comments: </label>
-            <div class="movie-detail"><input id="comments" placeholder="Log in to save your comments"></div>
+            <div class="movie-detail"><input id="comments"></div>
             <br>
 
         </div>
